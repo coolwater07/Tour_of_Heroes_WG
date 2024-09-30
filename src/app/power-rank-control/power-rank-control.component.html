@@ -1,0 +1,5 @@
+<div class="power-rank-control">
+    <button type="button" class="col-1 btn btn-outline-secondary" (click)="decrease()" [disabled]="powerRankControl.disabled">-</button>
+    <input class="col-4" type="text" [formControl]="powerRankControl" id="power_rank"/>
+    <button type="button" class="col-1 btn btn-outline-secondary" (click)="increase()" [disabled]="powerRankControl.disabled">+</button>
+</div>

@@ -1,0 +1,13 @@
+<div *ngIf="hero" class="mt">
+  <div class="container text-center">
+    <h2>{{ hero.name }} Details</h2>
+
+    <form [formGroup]="heroForm" (ngSubmit)="save()">
+      <!-- Передайте FormControl в app-hero-form -->
+      <app-hero-form [nameControl]="nameControl" [powerRankControl]="powerRankControl" [elementControl]="elementControl"></app-hero-form>
+
+      <button type="button" class="btn btn-success m-3" [disabled]="!heroForm.valid" type="submit">Save</button>
+      <button type="button" class="btn btn-secondary ms-4" (click)="goBack()">Go Back</button>
+    </form>
+  </div>
+</div>

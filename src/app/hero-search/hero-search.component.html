@@ -1,0 +1,12 @@
+<div id="search-component" (focusin)="onSearchFocus()" (focusout)="onSearchBlur()">
+  
+  <input id="search-box" [formControl]="searchBox" placeholder="Hero Search"/>
+
+  <div class="search-result" *ngIf="searchBoxFocused && searchBox.value">
+    <div *ngFor="let hero of heroes$ | async">
+      <a routerLink="/detail/{{hero.id}}">
+        {{hero.name}}
+      </a>
+    </div>
+  </div>
+</div>

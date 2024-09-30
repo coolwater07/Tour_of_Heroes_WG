@@ -1,0 +1,14 @@
+#search-component {
+  position: relative;
+
+.search-result {
+    position: absolute; 
+    top: 100%; 
+    left: 0; 
+    z-index: 1000; 
+    background-color: #f9f9f9; 
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); 
+    padding: 5px; 
+    min-width: 160px; 
+  }
+}

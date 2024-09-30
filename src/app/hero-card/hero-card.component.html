@@ -1,0 +1,10 @@
+<div class="card">
+    <img class="card-img-top" src="/assets/bust-in-silhouette-emoji-clipart-lg.png" alt="Hero Image">
+    <div class="card-body">
+        <h5 class="card-title">{{ hero.name }}</h5>
+        <p class="card-text">id: {{ hero.id }}</p>
+        <p class="card-text">Element: {{ hero.element }}</p>
+        <p class="card-text">Power: {{ hero.power_rank }}</p>
+        <button type="button" class="btn btn-secondary"  routerLink="/detail/{{hero.id}}">Edit</button>
+    </div>
+</div>

@@ -1,0 +1,77 @@
+<h2 class="text-center">Top Heroes</h2>
+<div class="container text-center pb-3">
+  <div class="row">
+    <div class="col-2 float-end">
+      <select id="filterControl" [formControl]="filterControl">
+        <option value="all">All elements</option>
+        <option value="earth">Earth</option>
+        <option value="water">Water</option>
+        <option value="air">Air</option>
+        <option value="ground">Ground</option>
+      </select>
+    </div>
+
+    <div class="col-2 float-end">
+      <select id="sortControl" [formControl]="sortControl">
+        <option value="id">ID</option>
+        <option value="name">Name</option>
+        <option value="power">Power rank</option>
+      </select>
+    </div>
+    <div class="col-4"></div>
+
+  
+  <div class="col-4 float-end">
+      <a class="icon-link icon-link-hover" (click)="changeView(viewModeEnum.List)" [class.active]="viewMode === viewModeEnum.List"><svg
+          xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-justify me-2"
+          viewBox="0 0 16 16">
+          <path fill-rule="evenodd"
+            d="M2 12.5a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5zm0-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5zm0-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5zm0-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5z" />
+        </svg></a>
+      <a class="icon-link icon-link-hover" (click)="changeView(viewModeEnum.Grid)" [class.active]="viewMode === viewModeEnum.Grid"><svg
+          xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-grid-3x3-gap-fill"
+          viewBox="0 0 16 16">
+          <path
+            d="M1 2a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2zm5 0a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V2zm5 0a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1V2zM1 7a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V7zm5 0a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V7zm5 0a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1V7zM1 12a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1v-2zm5 0a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1v-2zm5 0a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1v-2z" />
+        </svg></a>
+    </div>
+  </div>
+</div>
+
+<div class="heroes-menu">
+
+
+  <div class="container text-center" *ngFor="let hero of displayedHeroes$ | async" routerLink="/detail/{{hero.id}}">
+    <div class="row">
+      <div class="m-2 d-grid gap-2 col-6 mx-auto" *ngIf="viewMode === viewModeEnum.List">
+        <button type="button" class="btn btn-secondary">{{hero.name}}</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="container" *ngIf="viewMode === viewModeEnum.Grid">
+    <div class="row">
+      <div class="col-md-3 mb-3 text-center" *ngFor="let hero of displayedHeroes$ | async">
+        <app-hero-card [hero]="hero"></app-hero-card>
+      </div>
+    </div>
+  </div>
+
+  <nav class="m-3">
+    <ul class="pagination justify-content-center">
+      <li class="page-item" [class.disabled]="currentPage === 1">
+        <a class="page-link" (click)="goToPage(currentPage - 1)">&laquo;</a>
+      </li>
+      <li class="page-item" *ngFor="let pageNumber of pageNumbers" [class.active]="currentPage === pageNumber">
+        <a class="page-link" (click)="goToPage(pageNumber)">{{ pageNumber }}</a>
+      </li>
+      <li class="page-item" [class.disabled]="currentPage === totalPages">
+        <a class="page-link" (click)="goToPage(currentPage + 1)">&raquo;</a>
+      </li>
+    </ul>
+  </nav>
+
+
+
+
+</div>

@@ -1,0 +1,67 @@
+<div class="container text-center">
+  <h2>My Heroes</h2>
+  <div class="row mb-3">
+    <div class="col-2 float-end">
+      <select [formControl]="filterFormControl" (change)="setFilter($event)">>
+        <option value="all">All elements</option>
+        <option value="earth">Earth</option>
+        <option value="water">Water</option>
+        <option value="air">Air</option>
+        <option value="ground">Ground</option>
+      </select>
+    </div>
+
+    <div class="col-2 float-end">
+      <select [formControl]="sortFormControl" (change)="setSort($event)">
+        <option value="id">ID</option>
+        <option value="name">Name</option>
+        <option value="power">Power rank</option>
+      </select>
+    </div>
+  </div>
+
+
+    
+    <div class="text-center">
+      <!-- (click) passes input value to add() and then clears the input -->
+      <button class="float-start" type="button" class="btn btn-primary mb-3"
+      routerLink="/add-hero">
+        Add hero
+      </button>
+    </div>
+    
+  
+
+  <div class="container text-center">
+    <div class="row">
+      <div class="col-4"></div>
+      <div class="col">
+        <ul class="list-group">
+          <li class="list-group-item" *ngFor="let hero of filteredAndSortedHeroes$ | async">
+            <div class="row">
+              <div class="col">
+                <a routerLink="/detail/{{hero.id}}">
+                  <span class="float-end">{{hero.id}}</span>
+                </a>
+              </div>
+              <div class="col">
+                <a routerLink="/detail/{{hero.id}}">
+                  <span>{{hero.name}}</span>
+                </a>
+              </div>
+
+              <div class="col">
+                <button type="button" class="btn-close float-start" aria-label="Close" title="delete hero"
+                  (click)="delete(hero)"></button>
+              </div>
+
+            </div>
+          </li>
+        </ul>
+
+      </div>
+      <div class="col-4"></div>
+    </div>
+  </div>
+
+</div>

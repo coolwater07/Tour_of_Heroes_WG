@@ -1,0 +1,40 @@
+<h1 class="text-center">Match!</h1>
+
+<div class="match-container">
+    <div class="select-hero text-center mb-3">
+        <label for="heroSelect">Select a Hero:</label>
+        <select id="heroSelect" [formControl]="selectedHeroControl">
+            <option value="">Select a hero...</option>
+            <option *ngFor="let hero of heroes" [value]="hero.id">{{ hero.name }}</option>
+        </select>
+    </div>
+
+    <div class="selected-hero" *ngIf="selectedHero">
+    
+        <div class="card">
+            <div class="card-body text-center">
+                <h4 class="card-title">{{ selectedHero.name }}</h4>
+                <p class="card-text">Power Rank: {{ selectedHero.power_rank }}</p>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col" *ngIf="(heroesThatCanWin$ | async) as heroesThatCanWin">
+            <h3 class="text-center">You'll win:</h3>
+            <ul class="hero-list text-center">
+                <li *ngFor="let hero of heroesThatCanWin">
+                    {{ hero.name }} (Power Rank: {{ hero.power_rank }})
+                </li>
+            </ul>
+        </div>
+
+        <div class="col" *ngIf="(heroesThatCanLose$ | async) as heroesThatCanLose">
+            <h3 class="text-center">You'll lose:</h3>
+            <ul class="hero-list text-center">
+                <li *ngFor="let hero of heroesThatCanLose">
+                    {{ hero.name }} (Power Rank: {{ hero.power_rank }})
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
